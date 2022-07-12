@@ -1,12 +1,14 @@
 ﻿
 namespace TribalWarsBot
 {
+    /** Basic class for every Job - data for Task */
     public class Job
     {
         public string TaskID { get; set; } = "";
         public TASK_TYPE TaskType { get; set; }
         public int TimeoutTime { get; set; } = 0;
         public bool Run { get; set; } = true;
+        /** Task suspension timeout */
         protected void SleepTimetout()
         {
             Thread.Sleep(TimeoutTime*1000);
