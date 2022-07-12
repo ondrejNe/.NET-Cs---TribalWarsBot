@@ -21,8 +21,8 @@ villages:
    coordy: 540
    spear: all
    sword: all
-   axe: none
+   axe: all
    archer: none
-   light: none
+   light: 50
    marcher: none
    heavy: none

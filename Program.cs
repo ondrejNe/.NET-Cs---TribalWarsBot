@@ -46,6 +46,8 @@ namespace TribalWarsBot
                 Thread.Sleep(5000);
                 scavengeModule.Refresh();
             } while (keepRunning);
+            // Close the open web browser
+            Browser.CloseDriverInstance();
             Console.WriteLine("Tribal Wars bot exited");
         }
     }

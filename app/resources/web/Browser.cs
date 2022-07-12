@@ -38,6 +38,8 @@ namespace TribalWarsBot
                 CHROME_OPTIONS.AddArgument("start-maximized");
                 //CHROME_OPTIONS.AddArgument("headless");
                 CHROME_OPTIONS.AddArgument("disable-infobars");
+                //CHROME_OPTIONS.AddExcludedArgument("enable-automation");
+                CHROME_OPTIONS.AddExcludedArgument("enable-logging");
             }
             return CHROME_OPTIONS;
         }
