@@ -36,6 +36,7 @@ namespace TribalWarsBot
             {
                 CHROME_OPTIONS = new ChromeOptions();
                 CHROME_OPTIONS.AddArgument("start-maximized");
+                CHROME_OPTIONS.AddArgument("no-sandbox");
                 //CHROME_OPTIONS.AddArgument("headless");
                 CHROME_OPTIONS.AddArgument("disable-infobars");
                 //CHROME_OPTIONS.AddExcludedArgument("enable-automation");

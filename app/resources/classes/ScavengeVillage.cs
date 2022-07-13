@@ -72,7 +72,8 @@ namespace TribalWarsBot
                 return Convert.ToInt32(Math.Floor(totalCount * mult));
             }
             // unit is allowed only to specified max <number>
-            return Math.Max(totalCount, int.Parse(allowedCount));
+            int allowed = int.Parse(allowedCount);
+            return totalCount >= allowed ? allowed : totalCount;
         }
     }
 }
