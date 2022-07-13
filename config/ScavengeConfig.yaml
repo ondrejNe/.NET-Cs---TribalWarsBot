@@ -1,0 +1,28 @@
+﻿###############################################################
+# example village config options
+#
+#villages:
+# -
+#  name: <name>
+#  coordx: <X>
+#  coordy: <Y>
+#  spear: <number> // it is taken as allowed
+#  light: <number%>
+#  axe: <all/none>
+#  archer: all <number to omit>
+#  ...
+#
+##############################################################
+villages:
+ -
+   name: Makarena
+   id: 2798
+   coordx: 474
+   coordy: 540
+   spear: all
+   sword: all
+   axe: all 200
+   archer: none
+   light: none
+   marcher: none
+   heavy: none

@@ -6,6 +6,7 @@ namespace TribalWarsBot
     {
         private static ChromeDriver? CHROME_DRIVER = null;
         private static ChromeOptions? CHROME_OPTIONS = null;
+        private static ChromeDriverService? CHROME_SERVICE = null;
         /** Wait times the browser waits for element to load, aftewards error is thrown */
         private const int DEFAULT_WAIT_TIME = 5;
         private static readonly int PAGE_LOAD_WAIT_TIME = DEFAULT_WAIT_TIME;
@@ -27,6 +28,16 @@ namespace TribalWarsBot
             CHROME_DRIVER.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(IMPLICIT_WAIT_TIME);
             CHROME_DRIVER.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(ASYNC_JS_WAIT_TIME);
         }
+        /** Returns a singleton of chrome service -- browser service */
+        public static ChromeDriverService GetServiceInstace()
+        {
+            if (CHROME_SERVICE == null)
+            {
+                CHROME_SERVICE = ChromeDriverService.CreateDefaultService();
+                CHROME_SERVICE.Port = 8080;
+            }
+            return CHROME_SERVICE;
+        }
         /** Returns singleton of chrome options -- how the browser should be started */
         // headless seem to not work with some elements including button classes
         // should look into it
@@ -36,7 +47,7 @@ namespace TribalWarsBot
             {
                 CHROME_OPTIONS = new ChromeOptions();
                 CHROME_OPTIONS.AddArgument("start-maximized");
-                CHROME_OPTIONS.AddArgument("no-sandbox");
+                //CHROME_OPTIONS.AddArgument("no-sandbox");
                 //CHROME_OPTIONS.AddArgument("headless");
                 CHROME_OPTIONS.AddArgument("disable-infobars");
                 //CHROME_OPTIONS.AddExcludedArgument("enable-automation");
@@ -50,7 +61,7 @@ namespace TribalWarsBot
         {
             if (CHROME_DRIVER == null)
             {
-                CHROME_DRIVER = new ChromeDriver(GetOptionsInstance());
+                CHROME_DRIVER = new ChromeDriver(GetServiceInstace(), GetOptionsInstance());
                 CHROME_DRIVER.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(PAGE_LOAD_WAIT_TIME);
                 CHROME_DRIVER.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(IMPLICIT_WAIT_TIME);
                 CHROME_DRIVER.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(ASYNC_JS_WAIT_TIME);
@@ -62,8 +73,10 @@ namespace TribalWarsBot
         {
             GetDriverInstance().Close();
             GetDriverInstance().Quit();
+            GetDriverInstance().Dispose();
             CHROME_DRIVER = null;
             CHROME_OPTIONS = null;
+            CHROME_SERVICE = null;
         }
     }
 }
