@@ -11,7 +11,7 @@ namespace TribalWarsBot
         public ScavengeVillage village;
 
         private readonly List<int> unitsInVillageTotal = new(TWConst.UNIT_CAPACITY_LENGHT);
-        private List<int> unitsInVillageAvail = new(TWConst.UNIT_CAPACITY_LENGHT);
+        private readonly List<int> unitsInVillageAvail = new(TWConst.UNIT_CAPACITY_LENGHT);
         // Web elements
         private IReadOnlyList<IWebElement>? scavengeOptions;
         private IReadOnlyList<IWebElement>? unitButtons;
@@ -137,17 +137,21 @@ namespace TribalWarsBot
         /** Extracts village units from webpage and saves their counts */
         private void SetVillageUnits()
         {
+            // Empty arrays
+            unitsInVillageTotal.Clear();
+            unitsInVillageAvail.Clear();
             if (unitButtons == null) throw new Exception("Unit buttons were not found in scavenge");
+            // Set total array
             foreach(WebElement elem in unitButtons)
             {
                 String s = elem.Text;
                 // Parentheses are translated as the -number ; -1 corrects this behavior
                 unitsInVillageTotal.Add(int.Parse(s, NumberStyles.AllowParentheses) * -1);
             }
-            // Removing herald
+            // Removing herald -- does not effect next code -- just reminder
             unitsInVillageTotal.RemoveAt(unitsInVillageTotal.Count - 1);
-            // Set allowed units to be used in scavenge
-            unitsInVillageAvail = village.GetAllowedCounts(unitsInVillageTotal);
+            // Set allowed units to be used in scavenge array
+            village.SetAllowedCounts(unitsInVillageTotal, unitsInVillageAvail);
         }
         /** Returns multiplier divider based on number of available scavenging options */
         private static double CalculateVillageHaulMultiplier(bool[] optionReady)

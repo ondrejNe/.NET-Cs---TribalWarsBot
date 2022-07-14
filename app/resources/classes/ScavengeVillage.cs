@@ -34,6 +34,18 @@ namespace TribalWarsBot
         public string Light { get; set; } = "";
         public string Marcher { get; set; } = "";
         public string Heavy { get; set; } = "";
+        /** Sets a list of allowed counts per units */
+        // Takes list of available units and list to fill
+        public void SetAllowedCounts(List<int> totalCounts, List<int> toSetCounts)
+        {
+            toSetCounts.Add(ParseCount(totalCounts[0], Spear));
+            toSetCounts.Add(ParseCount(totalCounts[1], Sword));
+            toSetCounts.Add(ParseCount(totalCounts[2], Axe));
+            toSetCounts.Add(ParseCount(totalCounts[3], Archer));
+            toSetCounts.Add(ParseCount(totalCounts[4], Light));
+            toSetCounts.Add(ParseCount(totalCounts[5], Marcher));
+            toSetCounts.Add(ParseCount(totalCounts[6], Heavy));
+        }
         /** Returns a list of allowed counts per units */
         // Takes list of available units
         public List<int> GetAllowedCounts(List<int> totalCounts)
