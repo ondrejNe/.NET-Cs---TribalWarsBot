@@ -7,6 +7,7 @@ namespace TribalWarsBot
         private static ChromeDriver? CHROME_DRIVER = null;
         private static ChromeOptions? CHROME_OPTIONS = null;
         private static ChromeDriverService? CHROME_SERVICE = null;
+        private const int CHROME_PORT = 8080;
         /** Wait times the browser waits for element to load, aftewards error is thrown */
         private const int DEFAULT_WAIT_TIME = 5;
         private static readonly int PAGE_LOAD_WAIT_TIME = DEFAULT_WAIT_TIME;
@@ -34,7 +35,7 @@ namespace TribalWarsBot
             if (CHROME_SERVICE == null)
             {
                 CHROME_SERVICE = ChromeDriverService.CreateDefaultService();
-                CHROME_SERVICE.Port = 8080;
+                CHROME_SERVICE.Port = CHROME_PORT;
             }
             return CHROME_SERVICE;
         }

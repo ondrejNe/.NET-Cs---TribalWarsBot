@@ -43,7 +43,7 @@ namespace TribalWarsBot
             ScavengeModule scavengeModule = new();
             do
             {
-                Thread.Sleep(5000);
+                Task.Delay(5000).Wait();
                 scavengeModule.Refresh();
             } while (keepRunning);
             // Close the open web browser

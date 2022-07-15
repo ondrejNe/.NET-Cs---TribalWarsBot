@@ -45,7 +45,7 @@ namespace TribalWarsBot
                         StartScavenge();
                         WaitForScavenge();
                     }
-                    //Browser.CloseDriverInstance();
+                    Browser.CloseDriverInstance();
                 }
                 // --------- Console --------- //
                 Console.WriteLine("Sleeping for " + TimeoutTime);

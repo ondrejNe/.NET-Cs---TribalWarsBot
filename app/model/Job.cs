@@ -11,7 +11,7 @@ namespace TribalWarsBot
         /** Task suspension timeout */
         protected void SleepTimetout()
         {
-            Thread.Sleep(TimeoutTime*1000);
+            Task.Delay(TimeoutTime * 1000).Wait();
         }
     }
     public enum TASK_TYPE
