@@ -9,7 +9,7 @@ namespace TribalWarsBot
     internal class ScavengeModule
     {
         // code remnant - private readonly List<Task> scavengeTasks = new();
-        private readonly List<JobScavenge> scavengeJobs = new();
+        private readonly List<JobScavenge> jobScavenges = new();
         public ScavengeModule()
         {
             Refresh();
@@ -21,7 +21,7 @@ namespace TribalWarsBot
             if (scavengeVillages == null) return;
             // -----------------------------------------------------------
             // Firstly remove existing scavenge villages, if not specified
-            foreach(var existScavengeJob in this.scavengeJobs)
+            foreach(var existScavengeJob in this.jobScavenges)
             {
                 string existName = existScavengeJob.village.Name;
                 bool found = false;
@@ -42,7 +42,7 @@ namespace TribalWarsBot
             foreach (var newVillage in scavengeVillages)
             {
                 bool found = false;
-                foreach(var existScavengeJob in this.scavengeJobs)
+                foreach(var existScavengeJob in this.jobScavenges)
                 {
                     if(existScavengeJob.village.Name == newVillage.Name)
                     {
@@ -62,9 +62,9 @@ namespace TribalWarsBot
         public void CreateScavengeVillage(ScavengeVillage village)
         {
             JobScavenge job = new(village);
-            scavengeJobs.Add(job);
+            jobScavenges.Add(job);
             Task t = new(job.Start);
-            //scavengeTasks.Add(t);
+            //code remnant - scavengeTasks.Add(t);
             t.Start();
         }
         /** Removes the job that has been deleted from config,
@@ -72,7 +72,7 @@ namespace TribalWarsBot
         public void RemoveScavengeVillage(JobScavenge job)
         {
             job.Run = false;
-            scavengeJobs.Remove(job);
+            jobScavenges.Remove(job);
         }
     }
 }
