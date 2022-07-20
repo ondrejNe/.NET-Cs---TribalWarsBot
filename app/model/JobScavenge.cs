@@ -25,25 +25,50 @@ namespace TribalWarsBot
             this.TaskID = Cryptography.ComputeSha256Hash(village.Name);
             this.TaskType = TASK_TYPE.SCAVENGE;
         }
+        /** Stops the scavenging script. Last/current scavenge will finish, but new one will not start 
+         ** by this instance */
+        public void Stop()
+        {
+            this.Run = false;
+        }
         /** Starts the scavenging script for current village as specified and loaded from config */
-        // ---- toto budem musiet prerobit, lebo ked sa lognem normalne, tak appku vyhodím
         public void Start()
         {
+            int errorCounter = 0;
             while (this.Run)
             {
                 lock (Dispatcher.GetBrowserLock())
                 {
                     DRIVER = Browser.GetDriverInstance();
-                    GetToScavenge();
-                    IReadOnlyList<IWebElement> countdowns = DRIVER.FindElements(By.ClassName("return-countdown"));
-                    if(countdowns.Count > 0)
+                    try
                     {
-                        WaitForScavenge();
+                        GetToScavenge();
+                        IReadOnlyList<IWebElement> countdowns = DRIVER.FindElements(By.ClassName("return-countdown"));
+                        if (countdowns.Count > 0)
+                        {
+                            WaitForScavenge();
+                        }
+                        else
+                        {
+                            StartScavenge();
+                            WaitForScavenge();
+                        }
+                        // Reset error counter
+                        errorCounter = 0;
                     }
-                    else
+                    catch (Exception)
                     {
-                        StartScavenge();
-                        WaitForScavenge();
+                        // Error occured
+                        errorCounter++;
+                        // 200s timetout
+                        this.TimeoutTime = 200;
+                        if(errorCounter == 5)
+                        {
+                            // --------- Console --------- //
+                            Console.WriteLine("Scavenge job terminated due to 5 times unavailability");
+                            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
+                            // --------- Console --------- //
+                        }
                     }
                     Browser.CloseDriverInstance();
                 }
