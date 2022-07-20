@@ -168,31 +168,22 @@ namespace TribalWarsBot
         {
             if (unitButtons == null) throw new Exception("Unit buttons were not found in scavenge");
             if (unitInputFields == null) throw new Exception("Unit input fields were not found in scavenge");
-
+            // Calculate necessary haul
             int desiredHaul = (int)(partialHaul * TWConst.HAUL_MULTIPLIER[optionNumber]);
-            int desiredUnitCount;
+            int desiredUnitCount, actualUnitCount;
 
             for (int i = 0; i < unitsInVillageAvail.Count; i++)
             {
+                // Number of this specific unit i would want to have
                 desiredUnitCount = desiredHaul / TWConst.UNIT_CAPACITIES[i];
-                if (desiredUnitCount >= unitsInVillageAvail[i])
-                {
-                    unitButtons[i].Click();
-                    // Lower remaining haul sum
-                    desiredHaul -= unitsInVillageAvail[i] * TWConst.UNIT_CAPACITIES[i];
-                    // Correct remaining units
-                    unitsInVillageAvail[i] = 0;
-                }
-                else
-                {
-                    unitInputFields[i].SendKeys(desiredUnitCount.ToString());
-                    // Lower remaining haul sum (unused)
-                    // desiredHaul -= desiredUnitCount * TWConst.UNIT_CAPACITIES[i];
-                    // Correct remaining units
-                    unitsInVillageAvail[i] -= desiredUnitCount;
-                    ClickScavengeOption(optionNumber);
-                    return;
-                }
+                // Number i actualy can get from available units
+                actualUnitCount = Math.Min(desiredUnitCount, unitsInVillageAvail[i]);
+                // Enter the number
+                unitInputFields[i].SendKeys(actualUnitCount.ToString());
+                // Lower the reamaining haul
+                desiredHaul -= actualUnitCount * TWConst.UNIT_CAPACITIES[i];
+                // Update available village units
+                unitsInVillageAvail[i] -= actualUnitCount;
             }
             ClickScavengeOption(optionNumber);
         }

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TribalWarsBot", "TribalWarsBot.csproj", "{5376FE64-6A09-4DA4-8BCB-322E96B6078A}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "YamlEditor", "..\React---YamlEditor\YamlEditor\YamlEditor.esproj", "{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CompileBuild|Any CPU = CompileBuild|Any CPU
@@ -27,6 +29,24 @@ Global
 		{5376FE64-6A09-4DA4-8BCB-322E96B6078A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5376FE64-6A09-4DA4-8BCB-322E96B6078A}.Release|x86.ActiveCfg = Release|x86
 		{5376FE64-6A09-4DA4-8BCB-322E96B6078A}.Release|x86.Build.0 = Release|x86
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.CompileBuild|Any CPU.ActiveCfg = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.CompileBuild|Any CPU.Build.0 = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.CompileBuild|Any CPU.Deploy.0 = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.CompileBuild|x86.ActiveCfg = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.CompileBuild|x86.Build.0 = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.CompileBuild|x86.Deploy.0 = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Debug|x86.Build.0 = Debug|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Release|x86.ActiveCfg = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Release|x86.Build.0 = Release|Any CPU
+		{DFAE458D-1615-45AB-A80D-FB0F328D0BC2}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

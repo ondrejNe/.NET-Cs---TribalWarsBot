@@ -8,7 +8,7 @@ namespace TribalWarsBot
 {
     internal class ScavengeModule
     {
-        //private readonly List<Task> scavengeTasks = new();
+        // code remnant - private readonly List<Task> scavengeTasks = new();
         private readonly List<JobScavenge> scavengeJobs = new();
         public ScavengeModule()
         {

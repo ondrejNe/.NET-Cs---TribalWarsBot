@@ -19,8 +19,8 @@ villages:
    id: 2798
    coordx: 474
    coordy: 540
-   spear: all
-   sword: all
+   spear: all 100
+   sword: all 100
    axe: none
    archer: none
    light: none
